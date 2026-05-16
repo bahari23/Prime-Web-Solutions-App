@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Prime Web Solutions, Nairobi</title>
+<meta name="description" content="Browse Prime Web Solutions' portfolio — e-commerce sites, SACCO apps, business websites, and more built for Kenyan clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* PORTFOLIO PAGE */
+.portfolio-section { padding: 100px 5%; background: var(--cream); }
+.portfolio-wrap { max-width: 1240px; margin: 0 auto; }
+
+/* FILTERS */
+.filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap; margin: 48px 0 40px;
+}
+.filter-btn {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+  padding: 8px 18px; border-radius: 50px; cursor: pointer;
+  border: 1px solid var(--border-light); background: var(--white);
+  color: var(--gray); text-transform: uppercase;
+  transition: all var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--navy); color: var(--white); border-color: var(--navy);
+}
+
+/* PROJECT GRID */
+.projects-full-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 28px;
+}
+.pcard {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border-light); overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex; flex-direction: column;
+}
+.pcard:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(2,27,53,0.13); }
+
+/* Thumb */
+.pcard-thumb {
+  height: 220px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px;
+}
+.pcard-thumb.supertronics { background: linear-gradient(135deg, #1a2a4a 0%, #0d1b2e 100%); }
+.pcard-thumb.interior     { background: linear-gradient(135deg, #1e3d30 0%, #0e2019 100%); }
+.pcard-thumb.suimas       { background: linear-gradient(135deg, #3a2510 0%, #1e1208 100%); }
+.pcard-thumb.shoes        { background: linear-gradient(135deg, #2a1a42 0%, #170e28 100%); }
+.pcard-thumb.portfolio    { background: linear-gradient(135deg, #0e1e3a 0%, #071024 100%); }
+.pcard-thumb.sacco        { background: linear-gradient(135deg, #0e2a1a 0%, #071410 100%); }
+
+.pcard-thumb-icon { font-size: 40px; position: relative; z-index:1; }
+.pcard-thumb-url {
+  font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.2);
+  letter-spacing: 1px; position: relative; z-index:1; padding: 0 16px; text-align: center;
+}
+.pcard-thumb-glow {
+  position: absolute; inset:0;
+  background: radial-gradient(circle at 50% 60%, rgba(239,159,39,0.08) 0%, transparent 65%);
+}
+.pcard-badge {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px;
+  padding: 4px 12px; border-radius: 50px; text-transform: uppercase;
+}
+.badge-live    { background: rgba(29,158,117,0.2); color: #4ECBA0; border: 1px solid rgba(29,158,117,0.3); }
+.badge-ongoing { background: rgba(239,159,39,0.15); color: var(--gold); border: 1px solid rgba(239,159,39,0.3); }
+
+/* Body */
+.pcard-body { padding: 26px 26px 20px; flex:1; display:flex; flex-direction:column; }
+.pcard-category {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
+  color: var(--blue-light); margin-bottom: 8px; text-transform: uppercase;
+}
+.pcard-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  color: var(--navy); margin-bottom: 10px; line-height: 1.25;
+}
+.pcard-desc { font-size: 13.5px; line-height: 1.75; color: var(--gray); flex:1; margin-bottom: 20px; }
+.pcard-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+.pcard-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+  padding: 3px 10px; background: var(--cream); color: var(--navy-mid);
+  border-radius: 50px; border: 1px solid var(--border-light);
+}
+.pcard-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border-light); }
+.pcard-link {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  color: var(--blue); display: inline-flex; align-items: center; gap: 6px;
+  transition: color var(--transition); text-transform: uppercase;
+}
+.pcard-link:hover { color: var(--gold); }
+.pcard-status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.dot-live { background: #1D9E75; box-shadow: 0 0 6px rgba(29,158,117,0.4); }
+.dot-ongoing { background: var(--gold); animation: blink2 2s infinite; }
+@keyframes blink2 { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+/* ONGOING FEATURE CARD */
+.featured-ongoing {
+  background: var(--navy); border-radius: 16px; overflow: hidden;
+  margin-bottom: 40px; grid-column: 1 / -1;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.featured-ongoing-visual {
+  background: linear-gradient(135deg, #0e2a1a, #071410);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 280px; flex-direction: column; gap: 16px;
+  position: relative; overflow:hidden;
+}
+.featured-ongoing-visual::before {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(circle at 50%, rgba(29,158,117,0.12) 0%, transparent 70%);
+}
+.featured-ongoing-visual .icon { font-size: 56px; position:relative; z-index:1; }
+.featured-ongoing-body { padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; }
+.featured-ongoing-body .pcard-category { color: var(--gold); }
+.featured-ongoing-body .pcard-name { color: var(--white); font-size: 26px; }
+.featured-ongoing-body .pcard-desc { color: rgba(255,255,255,0.5); }
+.featured-ongoing-body .pcard-tag { background: rgba(255,255,255,0.06); color: var(--sky); border-color: var(--border); }
+.featured-ongoing-body .pcard-footer { border-color: var(--border); }
+.progress-bar-wrap { margin: 16px 0; }
+.progress-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+.progress-bg { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+.progress-fill { height: 3px; background: var(--teal); border-radius: 2px; width: 65%; }
+
+/* CTA */
+.portfolio-cta { padding: 80px 5%; background: var(--navy); }
+.portfolio-cta-inner {
+  max-width: 1200px; margin: 0 auto; text-align: center;
+}
+.portfolio-cta h2 {
+  font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 600;
+  color: var(--white); margin-bottom: 16px; line-height: 1.15;
+}
+.portfolio-cta h2 em { color: var(--gold); font-style: italic; font-weight: 300; }
+.portfolio-cta p { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 32px; }
+.portfolio-cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .featured-ongoing { grid-template-columns: 1fr; }
+  .featured-ongoing-visual { min-height: 180px; }
+  .projects-full-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.svg" alt="Prime Web Solutions">
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Get a Quote</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="nav-cta" onclick="closeMobile()">Get a Free Quote →</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-accent"></div>
+  <div class="page-hero-content">
+    <span class="section-label">OUR PORTFOLIO</span>
+    <h1 class="section-title">Work We're <em>Proud Of.</em></h1>
+    <p>Every project tells a story. Here's a look at the websites, e-commerce stores, and web applications we've built for our clients.</p>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">6+ PROJECTS COMPLETED</span>
+    <span class="ticker-item">E-COMMERCE</span>
+    <span class="ticker-item">BUSINESS SITES</span>
+    <span class="ticker-item">WEB APPS</span>
+    <span class="ticker-item">SACCO SYSTEMS</span>
+    <span class="ticker-item">6+ PROJECTS COMPLETED</span>
+    <span class="ticker-item">E-COMMERCE</span>
+    <span class="ticker-item">BUSINESS SITES</span>
+    <span class="ticker-item">WEB APPS</span>
+    <span class="ticker-item">SACCO SYSTEMS</span>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section">
+  <div class="portfolio-wrap">
+    <div class="reveal">
+      <span class="section-label">ALL PROJECTS</span>
+      <h2 class="section-title">Delivered with <em>Care & Craft.</em></h2>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCards('all', this)">All Work</button>
+      <button class="filter-btn" onclick="filterCards('ecommerce', this)">E-Commerce</button>
+      <button class="filter-btn" onclick="filterCards('business', this)">Business Sites</button>
+      <button class="filter-btn" onclick="filterCards('webapp', this)">Web Apps</button>
+      <button class="filter-btn" onclick="filterCards('portfolio', this)">Portfolio</button>
+    </div>
+
+    <div class="projects-full-grid" id="projectsGrid">
+
+      <!-- FEATURED ONGOING -->
+      <div class="featured-ongoing pcard-item reveal" data-cat="webapp">
+        <div class="featured-ongoing-visual">
+          <div class="icon">🏦</div>
+        </div>
+        <div class="featured-ongoing-body">
+          <div class="pcard-category">WEB APPLICATION · IN PROGRESS</div>
+          <div class="pcard-name">Stable Fortune SACCO App</div>
+          <div class="pcard-desc">A comprehensive SACCO management web application currently in active development. Features include member registration, loan applications, savings tracking, transaction history, and a full admin dashboard for SACCO administrators.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">SACCO SYSTEM</span>
+            <span class="pcard-tag">MEMBER PORTAL</span>
+            <span class="pcard-tag">LOAN MANAGEMENT</span>
+            <span class="pcard-tag">ADMIN DASHBOARD</span>
+            <span class="pcard-tag">JAVASCRIPT</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-label">DEVELOPMENT PROGRESS — 65%</div>
+            <div class="progress-bg"><div class="progress-fill"></div></div>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://bahari23.github.io/Stabble-Fortune-Sacco-App/" target="_blank" class="pcard-link">Preview App ↗</a>
+            <div class="pcard-status-dot dot-ongoing"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUPERTRONICS -->
+      <div class="pcard reveal reveal-delay-1 pcard-item" data-cat="ecommerce">
+        <div class="pcard-thumb supertronics">
+          <div class="pcard-thumb-glow"></div>
+          <span class="pcard-badge badge-live">✓ LIVE</span>
+          <div class="pcard-thumb-icon">🖥️</div>
+          <div class="pcard-thumb-url">supertronics.stablefortunes.com</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-category">E-COMMERCE · ELECTRONICS</div>
+          <div class="pcard-name">Supertronics Store</div>
+          <div class="pcard-desc">Full electronics e-commerce platform for a Kenyan electronics retailer. Features a product catalogue with categories, shopping cart, and payment integration for seamless online sales.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">E-COMMERCE</span>
+            <span class="pcard-tag">PRODUCT CATALOGUE</span>
+            <span class="pcard-tag">SHOPPING CART</span>
+            <span class="pcard-tag">RESPONSIVE</span>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://supertronics.stablefortunes.com/" target="_blank" class="pcard-link">Visit Site ↗</a>
+            <div class="pcard-status-dot dot-live"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERIOR DESIGNERS -->
+      <div class="pcard reveal reveal-delay-2 pcard-item" data-cat="business">
+        <div class="pcard-thumb interior">
+          <div class="pcard-thumb-glow"></div>
+          <span class="pcard-badge badge-live">✓ LIVE</span>
+          <div class="pcard-thumb-icon">🏡</div>
+          <div class="pcard-thumb-url">interiordesigners.co.ke</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-category">BUSINESS WEBSITE · INTERIOR DESIGN</div>
+          <div class="pcard-name">Interior Designers Kenya</div>
+          <div class="pcard-desc">Professional website for a leading Kenyan interior design firm. Showcases their portfolio of completed projects, service offerings, and allows potential clients to make enquiries and bookings.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">BUSINESS SITE</span>
+            <span class="pcard-tag">PORTFOLIO</span>
+            <span class="pcard-tag">ENQUIRY FORM</span>
+            <span class="pcard-tag">SEO</span>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://interiordesigners.co.ke/" target="_blank" class="pcard-link">Visit Site ↗</a>
+            <div class="pcard-status-dot dot-live"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUIMAS -->
+      <div class="pcard reveal pcard-item" data-cat="business">
+        <div class="pcard-thumb suimas">
+          <div class="pcard-thumb-glow"></div>
+          <span class="pcard-badge badge-live">✓ LIVE</span>
+          <div class="pcard-thumb-icon">🏢</div>
+          <div class="pcard-thumb-url">suimas.co.ke · suimas.com</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-category">CORPORATE WEBSITE · DUAL DOMAIN</div>
+          <div class="pcard-name">Suimas Platform</div>
+          <div class="pcard-desc">Corporate website deployed across two domains (suimas.co.ke and suimas.com) with a modern responsive design, CMS integration, SEO optimisation, and a scalable page structure built for long-term growth.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">CORPORATE</span>
+            <span class="pcard-tag">DUAL DOMAIN</span>
+            <span class="pcard-tag">CMS</span>
+            <span class="pcard-tag">SEO</span>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://suimas.co.ke" target="_blank" class="pcard-link">Visit Site ↗</a>
+            <div class="pcard-status-dot dot-live"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOE SHOP -->
+      <div class="pcard reveal reveal-delay-1 pcard-item" data-cat="ecommerce">
+        <div class="pcard-thumb shoes">
+          <div class="pcard-thumb-glow"></div>
+          <span class="pcard-badge badge-live">✓ LIVE</span>
+          <div class="pcard-thumb-icon">👟</div>
+          <div class="pcard-thumb-url">shoeshop.stablefortunes.com</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-category">E-COMMERCE · FASHION / FOOTWEAR</div>
+          <div class="pcard-name">Shoe Shop Online</div>
+          <div class="pcard-desc">Clean and modern fashion e-commerce store for a footwear brand. Features a stylish product gallery, size selection filters, add-to-cart functionality, and a streamlined checkout experience.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">E-COMMERCE</span>
+            <span class="pcard-tag">FASHION</span>
+            <span class="pcard-tag">PRODUCT GALLERY</span>
+            <span class="pcard-tag">CHECKOUT</span>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://shoeshop.stablefortunes.com/" target="_blank" class="pcard-link">Visit Site ↗</a>
+            <div class="pcard-status-dot dot-live"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSONAL PORTFOLIO -->
+      <div class="pcard reveal reveal-delay-2 pcard-item" data-cat="portfolio">
+        <div class="pcard-thumb portfolio">
+          <div class="pcard-thumb-glow"></div>
+          <span class="pcard-badge badge-live">✓ LIVE</span>
+          <div class="pcard-thumb-icon">💼</div>
+          <div class="pcard-thumb-url">bahari23.github.io</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-category">PORTFOLIO WEBSITE · PERSONAL</div>
+          <div class="pcard-name">Developer Portfolio</div>
+          <div class="pcard-desc">Personal developer portfolio website built to showcase projects, technical skills, and professional experience. Hosted on GitHub Pages with clean HTML, CSS, and JavaScript — mobile-friendly and fast.</div>
+          <div class="pcard-tags">
+            <span class="pcard-tag">PORTFOLIO</span>
+            <span class="pcard-tag">GITHUB PAGES</span>
+            <span class="pcard-tag">HTML/CSS/JS</span>
+            <span class="pcard-tag">RESPONSIVE</span>
+          </div>
+          <div class="pcard-footer">
+            <a href="https://bahari23.github.io/" target="_blank" class="pcard-link">Visit Site ↗</a>
+            <div class="pcard-status-dot dot-live"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-full-grid -->
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="portfolio-cta">
+  <div class="portfolio-cta-inner reveal">
+    <span class="section-label" style="color:var(--gold);text-align:center;margin-bottom:16px;">YOUR PROJECT NEXT?</span>
+    <h2>Ready to add your business<br>to this <em>portfolio?</em></h2>
+    <p>Get in touch for a free consultation and let's talk about what we can build together.</p>
+    <div class="portfolio-cta-actions">
+      <a href="contact.html" class="btn-primary">Start Your Project →</a>
+      <a href="tel:+254798544547" class="btn-outline">📞 Call 0798 544 547</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="images/logo.svg" alt="Prime Web Solutions" class="footer-logo-img">
+      <p>Professional web design & development based in Karen, Nairobi. We build digital solutions that help Kenyan and African businesses grow online.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254798544547" title="WhatsApp">💬</a>
+        <a href="mailto:primewebsolutions@gmail.com" title="Email">✉️</a>
+        <a href="https://bahari23.github.io/" title="Portfolio" target="_blank">🌐</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>SERVICES</h4>
+      <a href="index.html#services">Business Websites</a>
+      <a href="index.html#services">E-Commerce Stores</a>
+      <a href="index.html#services">Web Applications</a>
+      <a href="index.html#services">UI/UX Design</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About Us</a>
+      <a href="portfolio.html">Our Portfolio</a>
+      <a href="index.html#process">How We Work</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <a href="tel:+254798544547">📞 0798 544 547</a>
+      <a href="mailto:primewebsolutions@gmail.com">✉️ primewebsolutions@gmail.com</a>
+      <a href="#">📍 Karen End, Nairobi</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Prime Web Solutions. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/254798544547?text=Hi%2C%20I%20found%20you%20on%20your%20website%20and%20I%20would%20like%20to%20enquire%20about%20your%20services." class="whatsapp-fab" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+function filterCards(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pcard-item').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

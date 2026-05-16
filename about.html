@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Prime Web Solutions, Nairobi</title>
+<meta name="description" content="Learn about Prime Web Solutions — a Karen-based web design agency passionate about helping Kenyan businesses thrive online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ABOUT PAGE STYLES */
+.about-section { padding: 100px 5%; background: var(--white); }
+.about-section-alt { padding: 100px 5%; background: var(--cream); }
+.about-wrap { max-width: 1200px; margin: 0 auto; }
+
+/* STORY */
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.story-content .section-title { margin-bottom: 24px; }
+.story-content p { font-size: 15.5px; line-height: 1.9; color: #444; margin-bottom: 18px; }
+.story-content p:last-of-type { margin-bottom: 32px; }
+.story-visual {
+  background: var(--navy); border-radius: 16px; padding: 48px;
+  position: relative; overflow: hidden; min-height: 380px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.story-visual::before {
+  content:''; position: absolute; top: 0; right:0;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(239,159,39,0.15) 0%, transparent 70%);
+}
+.story-logo { width: 180px; filter: brightness(0) invert(1); margin-bottom: 28px; position: relative; z-index:1; }
+.story-pillars { display: flex; flex-direction: column; gap: 20px; position: relative; z-index:1; }
+.pillar { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.pillar:last-child { border-bottom:none; padding-bottom:0; }
+.pillar-icon {
+  width: 38px; height: 38px; background: rgba(239,159,39,0.12);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.pillar-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+.pillar-desc { font-size: 12.5px; color: var(--sky); line-height: 1.6; }
+
+/* VALUES */
+.values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+.value-card {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-radius: var(--radius); padding: 32px 28px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.value-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.value-icon { font-size: 32px; margin-bottom: 16px; }
+.value-title {
+  font-family: var(--font-display); font-size: 19px; font-weight: 600;
+  color: var(--navy); margin-bottom: 10px;
+}
+.value-desc { font-size: 13.5px; line-height: 1.75; color: var(--gray); }
+
+/* SKILLS */
+.skills-section { padding: 100px 5%; background: var(--navy); }
+.skills-wrap { max-width: 1200px; margin: 0 auto; }
+.skills-wrap .section-title { color: var(--white); margin-bottom: 56px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.skill-item {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+  transition: background var(--transition), border-color var(--transition);
+}
+.skill-item:hover { background: rgba(239,159,39,0.06); border-color: rgba(239,159,39,0.2); }
+.skill-name { font-size: 13.5px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+.skill-bar-bg { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+.skill-bar { height: 3px; background: var(--gold); border-radius: 2px; transition: width 1.2s ease; width: 0; }
+.skill-item.visible .skill-bar { width: var(--w); }
+.skill-pct { font-family: var(--font-mono); font-size: 10px; color: var(--gold); margin-top: 5px; }
+
+/* LOCATION */
+.location-section { padding: 100px 5%; background: var(--cream); }
+.location-wrap { max-width: 1200px; margin: 0 auto; }
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+.location-details { display: flex; flex-direction: column; gap: 20px; }
+.loc-item { display: flex; gap: 14px; align-items: flex-start; }
+.loc-icon {
+  width: 42px; height: 42px; background: rgba(239,159,39,0.1);
+  border: 1px solid rgba(239,159,39,0.2); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.loc-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--blue-light); margin-bottom: 4px; }
+.loc-value { font-size: 15px; color: var(--navy); font-weight: 500; }
+.loc-sub { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.map-placeholder {
+  background: var(--navy); border-radius: 16px; padding: 48px;
+  min-height: 300px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  position: relative; overflow: hidden;
+}
+.map-placeholder::before {
+  content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(55,138,221,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(55,138,221,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.map-pin { font-size: 48px; position: relative; z-index:1; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+.map-text {
+  position: relative; z-index:1; text-align: center;
+  font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--white);
+}
+.map-subtext { position: relative; z-index:1; font-family: var(--font-mono); font-size: 11px; color: var(--sky); letter-spacing: 2px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .story-grid, .location-grid { grid-template-columns: 1fr; }
+  .story-visual { min-height: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.svg" alt="Prime Web Solutions">
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Get a Quote</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="nav-cta" onclick="closeMobile()">Get a Free Quote →</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-accent"></div>
+  <div class="page-hero-content">
+    <span class="section-label">ABOUT US</span>
+    <h1 class="section-title">We're Prime Web Solutions.</h1>
+    <p>A passionate web design and development agency based in Karen, Nairobi — helping businesses across Kenya and beyond build a powerful digital presence.</p>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">KAREN · NAIROBI</span>
+    <span class="ticker-item">WEB DESIGN</span>
+    <span class="ticker-item">DEVELOPMENT</span>
+    <span class="ticker-item">E-COMMERCE</span>
+    <span class="ticker-item">KENYA & BEYOND</span>
+    <span class="ticker-item">KAREN · NAIROBI</span>
+    <span class="ticker-item">WEB DESIGN</span>
+    <span class="ticker-item">DEVELOPMENT</span>
+    <span class="ticker-item">E-COMMERCE</span>
+    <span class="ticker-item">KENYA & BEYOND</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="about-section">
+  <div class="about-wrap">
+    <div class="story-grid">
+      <div class="story-content reveal">
+        <span class="section-label">OUR STORY</span>
+        <h2 class="section-title">Building Kenya's<br><em>Digital Future.</em></h2>
+        <p>Prime Web Solutions was founded with one mission: to make professional, high-quality web design accessible to Kenyan businesses of all sizes. We've seen too many local businesses lose opportunities simply because their online presence doesn't reflect the quality of their work.</p>
+        <p>We're a Karen-based team of designers and developers who care deeply about craft. We don't just build websites — we build digital tools that actually help businesses grow, generate leads, and serve customers better.</p>
+        <p>From small startups to established companies, we've delivered projects across e-commerce, SACCO management, interior design, electronics retail, and more. Every project gets our full attention, from the first call to the final launch.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="portfolio.html" class="btn-primary">See Our Work →</a>
+          <a href="contact.html" class="btn-outline" style="color:var(--navy);border-color:rgba(0,0,0,0.2);">Talk to Us</a>
+        </div>
+      </div>
+      <div class="story-visual reveal reveal-delay-2">
+        <img src="images/logo.svg" alt="Prime Web Solutions" class="story-logo">
+        <div class="story-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div>
+              <div class="pillar-title">Mission</div>
+              <div class="pillar-desc">Empower Kenyan businesses with world-class digital tools at accessible prices.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">👁️</div>
+            <div>
+              <div class="pillar-title">Vision</div>
+              <div class="pillar-desc">To be the go-to web partner for businesses across East Africa and beyond.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">💎</div>
+            <div>
+              <div class="pillar-title">Values</div>
+              <div class="pillar-desc">Quality, transparency, timely delivery, and genuine partnership with every client.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="about-section-alt">
+  <div class="about-wrap">
+    <div class="reveal">
+      <span class="section-label">WHAT WE STAND FOR</span>
+      <h2 class="section-title">Our Core <em>Values.</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon">✅</div>
+        <div class="value-title">Quality First</div>
+        <div class="value-desc">We don't ship anything we're not proud of. Every pixel, every line of code is reviewed for quality and performance before delivery.</div>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Client Partnership</div>
+        <div class="value-desc">We work with you, not just for you. Regular communication, honest updates, and feedback loops are built into every project.</div>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon">⏱️</div>
+        <div class="value-title">Timely Delivery</div>
+        <div class="value-desc">We respect your time and business deadlines. We set realistic timelines and stick to them without compromise on quality.</div>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon">📖</div>
+        <div class="value-title">Transparency</div>
+        <div class="value-desc">No hidden costs, no surprises. Clear pricing, honest scoping, and straightforward conversations from day one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="skills-wrap">
+    <span class="section-label reveal" style="color:var(--gold)">TECHNOLOGIES</span>
+    <h2 class="section-title reveal">Our Technical <em>Toolkit.</em></h2>
+    <div class="skills-grid" style="margin-top:0;">
+      <div class="skill-item reveal">
+        <div class="skill-name">HTML / CSS / JS</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:95%"></div></div>
+        <div class="skill-pct">95%</div>
+      </div>
+      <div class="skill-item reveal reveal-delay-1">
+        <div class="skill-name">WordPress / CMS</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:90%"></div></div>
+        <div class="skill-pct">90%</div>
+      </div>
+      <div class="skill-item reveal reveal-delay-2">
+        <div class="skill-name">E-Commerce (WooCommerce)</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:85%"></div></div>
+        <div class="skill-pct">85%</div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-name">Responsive Design</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:95%"></div></div>
+        <div class="skill-pct">95%</div>
+      </div>
+      <div class="skill-item reveal reveal-delay-1">
+        <div class="skill-name">UI/UX Design</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:80%"></div></div>
+        <div class="skill-pct">80%</div>
+      </div>
+      <div class="skill-item reveal reveal-delay-2">
+        <div class="skill-name">SEO Optimisation</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:80%"></div></div>
+        <div class="skill-pct">80%</div>
+      </div>
+      <div class="skill-item reveal">
+        <div class="skill-name">Web Applications</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:75%"></div></div>
+        <div class="skill-pct">75%</div>
+      </div>
+      <div class="skill-item reveal reveal-delay-1">
+        <div class="skill-name">M-Pesa Integration</div>
+        <div class="skill-bar-bg"><div class="skill-bar" style="--w:70%"></div></div>
+        <div class="skill-pct">70%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section">
+  <div class="location-wrap">
+    <div class="reveal">
+      <span class="section-label">WHERE TO FIND US</span>
+      <h2 class="section-title">Based in Karen,<br><em>Serving All of Kenya.</em></h2>
+    </div>
+    <div class="location-grid">
+      <div class="location-details reveal">
+        <div class="loc-item">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">OFFICE</div>
+            <div class="loc-value">Karen End, Nairobi</div>
+            <div class="loc-sub">Kenya</div>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">PHONE / WHATSAPP</div>
+            <div class="loc-value"><a href="tel:+254798544547" style="color:var(--navy);">0798 544 547</a></div>
+            <div class="loc-sub">Available Mon–Sat, 8am–6pm</div>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">✉️</div>
+          <div>
+            <div class="loc-label">EMAIL</div>
+            <div class="loc-value"><a href="mailto:primewebsolutions@gmail.com" style="color:var(--navy);">primewebsolutions@gmail.com</a></div>
+            <div class="loc-sub">We reply within 24 hours</div>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">🌐</div>
+          <div>
+            <div class="loc-label">PORTFOLIO</div>
+            <div class="loc-value"><a href="https://bahari23.github.io/" target="_blank" style="color:var(--blue);">bahari23.github.io ↗</a></div>
+            <div class="loc-sub">See all our developer work</div>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-primary" style="margin-top:8px;display:inline-flex;">Get in Touch →</a>
+      </div>
+      <div class="map-placeholder reveal reveal-delay-2">
+        <div class="map-pin">📍</div>
+        <div class="map-text">Karen End, Nairobi</div>
+        <div class="map-subtext">KENYA · EAST AFRICA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="images/logo.svg" alt="Prime Web Solutions" class="footer-logo-img">
+      <p>Professional web design & development based in Karen, Nairobi. We build digital solutions that help Kenyan and African businesses grow online.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254798544547" title="WhatsApp">💬</a>
+        <a href="mailto:primewebsolutions@gmail.com" title="Email">✉️</a>
+        <a href="https://bahari23.github.io/" title="Portfolio" target="_blank">🌐</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>SERVICES</h4>
+      <a href="index.html#services">Business Websites</a>
+      <a href="index.html#services">E-Commerce Stores</a>
+      <a href="index.html#services">Web Applications</a>
+      <a href="index.html#services">UI/UX Design</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About Us</a>
+      <a href="portfolio.html">Our Portfolio</a>
+      <a href="index.html#process">How We Work</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <a href="tel:+254798544547">📞 0798 544 547</a>
+      <a href="mailto:primewebsolutions@gmail.com">✉️ primewebsolutions@gmail.com</a>
+      <a href="#">📍 Karen End, Nairobi</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Prime Web Solutions. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/254798544547?text=Hi%2C%20I%20found%20you%20on%20your%20website%20and%20I%20would%20like%20to%20enquire%20about%20your%20services." class="whatsapp-fab" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Animate skill bars
+      const bar = e.target.querySelector('.skill-bar');
+      if(bar) { setTimeout(() => { bar.style.width = bar.style.getPropertyValue('--w') || getComputedStyle(bar).getPropertyValue('--w'); }, 100); }
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

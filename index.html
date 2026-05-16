@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Web Solutions — Professional Web Design & Development, Nairobi</title>
+<meta name="description" content="Prime Web Solutions — Nairobi-based web design & development agency. We build professional websites, e-commerce & web apps for businesses across Kenya & beyond.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HOME-SPECIFIC ── */
+/* HERO */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 130px 5% 80px;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(55,138,221,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(55,138,221,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-blob {
+  position: absolute; top: -140px; right: -120px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(24,95,165,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-blob-2 {
+  position: absolute; bottom: -120px; left: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(239,159,39,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(239,159,39,0.1); border: 1px solid rgba(239,159,39,0.3);
+  border-radius: 50px; padding: 6px 16px; margin-bottom: 28px;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; background: var(--gold); border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.hero-badge span { font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 2px; }
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 600; color: var(--white); line-height: 1.05;
+  letter-spacing: -1px; margin-bottom: 22px;
+}
+.hero h1 span { color: var(--gold); }
+.hero h1 em { font-style: italic; font-weight: 300; display: block; }
+.hero-desc {
+  font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.6);
+  line-height: 1.85; margin-bottom: 36px; max-width: 500px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; gap: 40px; margin-top: 52px;
+  padding-top: 36px; border-top: 1px solid var(--border);
+}
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--gold);
+}
+.hero-stat-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  color: rgba(255,255,255,0.35); margin-top: 2px;
+}
+
+/* HERO VISUAL PANEL */
+.hero-visual {
+  background: linear-gradient(135deg, #0C447C 0%, #021B35 70%);
+  border-radius: 16px; padding: 48px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 420px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.hero-visual::before {
+  content: '';
+  position: absolute; inset:0;
+  background: radial-gradient(circle at 70% 30%, rgba(55,138,221,0.15) 0%, transparent 60%);
+}
+.hero-logo-display {
+  position: relative; z-index:1;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.hero-logo-display img { width: 200px; filter: brightness(0) invert(1); }
+.hero-visual-tagline {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.3); text-align: center; margin-top: 8px; position: relative; z-index:1;
+}
+.hero-tech-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  position: relative; z-index:1; margin-top: 24px;
+}
+.hero-tech-pill {
+  font-family: var(--font-mono); font-size: 10px; color: var(--sky);
+  background: rgba(55,138,221,0.12); border: 1px solid rgba(55,138,221,0.2);
+  padding: 5px 12px; border-radius: 50px; letter-spacing: 1px;
+}
+.hero-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(239,159,39,0.1);
+  animation: ringPulse 3.5s ease-in-out infinite;
+}
+.hero-ring-1 { width: 180px; height: 180px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.hero-ring-2 { width: 280px; height: 280px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0.5s; }
+.hero-ring-3 { width: 380px; height: 380px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1s; }
+@keyframes ringPulse { 0%,100%{opacity:0.2;} 50%{opacity:0.6;} }
+
+/* SERVICES */
+.services { padding: 100px 5%; background: var(--white); }
+.services-wrap { max-width: 1200px; margin: 0 auto; }
+.services-intro { margin-bottom: 56px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px; background: var(--border-light);
+}
+.svc {
+  background: var(--cream); padding: 36px 30px;
+  position: relative; overflow: hidden;
+  transition: background var(--transition);
+  cursor: default;
+}
+.svc::before {
+  content:''; position: absolute; bottom:0; left:0;
+  width:0; height: 3px; background: var(--gold);
+  transition: width 0.35s ease;
+}
+.svc:hover { background: var(--navy); }
+.svc:hover::before { width: 100%; }
+.svc:hover .svc-num { color: rgba(255,255,255,0.08); }
+.svc:hover .svc-icon { color: var(--gold); }
+.svc:hover .svc-title { color: var(--white); }
+.svc:hover .svc-desc { color: var(--sky); }
+.svc-num {
+  font-family: var(--font-mono); font-size: 10px; color: var(--sky);
+  letter-spacing: 2px; margin-bottom: 20px; transition: color var(--transition);
+}
+.svc-icon {
+  font-size: 28px; margin-bottom: 14px;
+  transition: color var(--transition);
+}
+.svc-title {
+  font-family: var(--font-display); font-size: 19px; font-weight: 600;
+  color: var(--navy); margin-bottom: 10px;
+  transition: color var(--transition); line-height: 1.3;
+}
+.svc-desc {
+  font-size: 13.5px; line-height: 1.75; color: var(--gray);
+  transition: color var(--transition);
+}
+
+/* WHY US */
+.why { padding: 100px 5%; background: var(--navy); }
+.why-wrap { max-width: 1200px; margin: 0 auto; }
+.why-wrap .section-title { color: var(--white); margin-bottom: 56px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2px; background: rgba(255,255,255,0.04); }
+.why-card {
+  padding: 36px 28px; border: 1px solid rgba(255,255,255,0.04);
+  transition: background var(--transition), border-color var(--transition);
+}
+.why-card:hover { background: rgba(239,159,39,0.06); border-color: rgba(239,159,39,0.2); }
+.why-num {
+  font-family: var(--font-display); font-size: 64px; font-weight: 700;
+  color: rgba(255,255,255,0.03); line-height: 1; margin-bottom: -20px;
+}
+.why-icon { font-size: 26px; margin-bottom: 14px; }
+.why-title {
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  color: var(--white); margin-bottom: 10px;
+}
+.why-bar { width: 36px; height: 2px; background: var(--gold); margin-bottom: 14px; }
+.why-desc { font-size: 13.5px; line-height: 1.8; color: rgba(255,255,255,0.45); }
+
+/* PORTFOLIO PREVIEW */
+.portfolio-preview { padding: 100px 5%; background: var(--cream); }
+.portfolio-preview-wrap { max-width: 1200px; margin: 0 auto; }
+.portfolio-preview-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+.project-card {
+  background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border-light);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex; flex-direction: column;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(2,27,53,0.12); }
+.project-thumb {
+  height: 200px; background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.project-thumb-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+  color: rgba(255,255,255,0.25);
+}
+.project-thumb.supertronics { background: linear-gradient(135deg, #1a2a4a, #0d1b2e); }
+.project-thumb.interior { background: linear-gradient(135deg, #2d4a3e, #1a2e25); }
+.project-thumb.suimas { background: linear-gradient(135deg, #3a2a1a, #241a0e); }
+.project-thumb.shoes { background: linear-gradient(135deg, #2a1a3a, #1a0e24); }
+.project-thumb.portfolio { background: linear-gradient(135deg, #1a2a4a, #0d1b3a); }
+.project-thumb.sacco { background: linear-gradient(135deg, #1e3a2a, #0d1e14); }
+.project-tag {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 4px 10px; border-radius: 50px; letter-spacing: 1px; text-transform: uppercase;
+}
+.tag-live { background: rgba(29,158,117,0.2); color: #5DCAA5; border: 1px solid rgba(29,158,117,0.3); }
+.tag-ongoing { background: rgba(239,159,39,0.15); color: var(--gold); border: 1px solid rgba(239,159,39,0.3); }
+.project-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.project-name {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  color: var(--navy); margin-bottom: 8px;
+}
+.project-desc { font-size: 13.5px; line-height: 1.7; color: var(--gray); flex: 1; margin-bottom: 16px; }
+.project-link {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  color: var(--blue); display: inline-flex; align-items: center; gap: 6px;
+  transition: color var(--transition); text-transform: uppercase;
+}
+.project-link:hover { color: var(--gold); }
+
+/* PROCESS */
+.process { padding: 100px 5%; background: var(--white); }
+.process-wrap { max-width: 1200px; margin: 0 auto; }
+.process-wrap .section-title { margin-bottom: 64px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.steps::before {
+  content:''; position: absolute; top: 24px; left: 28px; right: 28px;
+  height: 1px; background: var(--border-light); z-index: 0;
+}
+.step { padding: 0 20px 0 0; position: relative; z-index: 1; }
+.step-dot {
+  width: 48px; height: 48px; background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--navy); margin-bottom: 22px;
+}
+.step-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  color: var(--navy); margin-bottom: 8px;
+}
+.step-desc { font-size: 13px; line-height: 1.7; color: var(--gray); }
+
+/* CONTACT STRIP */
+.contact-strip { padding: 80px 5%; background: var(--navy); }
+.contact-strip-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+}
+.contact-strip-title {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 600;
+  color: var(--white); line-height: 1.15;
+}
+.contact-strip-title em { color: var(--gold); font-style: italic; font-weight: 300; }
+.contact-strip-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+
+/* RESPONSIVE HOME */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .steps::before { display: none; }
+  .contact-strip-inner { grid-template-columns: 1fr; }
+  .contact-strip-actions { align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 120px 5% 60px; }
+  .hero-stats { gap: 28px; }
+  .steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.svg" alt="Prime Web Solutions">
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Get a Quote</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="nav-cta" onclick="closeMobile()">Get a Free Quote →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>NAIROBI · KENYA</span>
+      </div>
+      <h1>
+        We Build<br>
+        <span>Digital Solutions</span>
+        <em>That Grow Your Business.</em>
+      </h1>
+      <p class="hero-desc">
+        Prime Web Solutions crafts professional websites, e-commerce platforms, and web applications for businesses in Kenya and beyond. Clean code, compelling design, measurable results.
+      </p>
+      <div class="hero-actions">
+        <a href="portfolio.html" class="btn-primary">View Our Work →</a>
+        <a href="contact.html" class="btn-outline">Free Consultation</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">6+</div>
+          <div class="hero-stat-label">PROJECTS DELIVERED</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">CLIENT SATISFACTION</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3+</div>
+          <div class="hero-stat-label">YEARS EXPERIENCE</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring hero-ring-1"></div>
+      <div class="hero-ring hero-ring-2"></div>
+      <div class="hero-ring hero-ring-3"></div>
+      <div class="hero-logo-display">
+        <img src="images/logo.svg" alt="Prime Web Solutions Logo">
+        <div class="hero-visual-tagline">WEB · DESIGN · TECHNOLOGY</div>
+        <div class="hero-tech-pills">
+          <span class="hero-tech-pill">WEBSITES</span>
+          <span class="hero-tech-pill">E-COMMERCE</span>
+          <span class="hero-tech-pill">WEB APPS</span>
+          <span class="hero-tech-pill">UI/UX</span>
+          <span class="hero-tech-pill">SEO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">PROFESSIONAL WEBSITES</span>
+    <span class="ticker-item">E-COMMERCE SOLUTIONS</span>
+    <span class="ticker-item">WEB APPLICATIONS</span>
+    <span class="ticker-item">UI/UX DESIGN</span>
+    <span class="ticker-item">SACCO SYSTEMS</span>
+    <span class="ticker-item">RESPONSIVE DESIGN</span>
+    <span class="ticker-item">SEO OPTIMIZATION</span>
+    <span class="ticker-item">MOBILE-FIRST APPROACH</span>
+    <span class="ticker-item">NAIROBI, KENYA</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">PROFESSIONAL WEBSITES</span>
+    <span class="ticker-item">E-COMMERCE SOLUTIONS</span>
+    <span class="ticker-item">WEB APPLICATIONS</span>
+    <span class="ticker-item">UI/UX DESIGN</span>
+    <span class="ticker-item">SACCO SYSTEMS</span>
+    <span class="ticker-item">RESPONSIVE DESIGN</span>
+    <span class="ticker-item">SEO OPTIMIZATION</span>
+    <span class="ticker-item">MOBILE-FIRST APPROACH</span>
+    <span class="ticker-item">NAIROBI, KENYA</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-wrap">
+    <div class="services-intro reveal">
+      <span class="section-label">WHAT WE DO</span>
+      <h2 class="section-title">Everything Your<br><em>Online Presence Needs.</em></h2>
+      <p class="section-subtitle">From concept to launch, we deliver end-to-end digital solutions tailored to your business goals.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-icon">🌐</div>
+        <div class="svc-title">Business Websites</div>
+        <div class="svc-desc">Fast, modern, mobile-first websites that represent your brand professionally and convert visitors into customers.</div>
+      </div>
+      <div class="svc reveal reveal-delay-1">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">🛒</div>
+        <div class="svc-title">E-Commerce Stores</div>
+        <div class="svc-desc">Full-featured online shops with secure payments, inventory management, and seamless shopping experiences.</div>
+      </div>
+      <div class="svc reveal reveal-delay-2">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Web Applications</div>
+        <div class="svc-desc">Custom web apps, SACCO management systems, member portals, and bespoke tools built for your workflows.</div>
+      </div>
+      <div class="svc reveal reveal-delay-3">
+        <div class="svc-num">04</div>
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">UI/UX Design</div>
+        <div class="svc-desc">Intuitive, beautiful interfaces designed with your users in mind — wireframes, prototypes, and pixel-perfect delivery.</div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">05</div>
+        <div class="svc-icon">📈</div>
+        <div class="svc-title">SEO & Performance</div>
+        <div class="svc-desc">Optimised page speed, clean code structure, and on-page SEO to help your business rank and get found online.</div>
+      </div>
+      <div class="svc reveal reveal-delay-1">
+        <div class="svc-num">06</div>
+        <div class="svc-icon">🔧</div>
+        <div class="svc-title">Maintenance & Support</div>
+        <div class="svc-desc">Ongoing site updates, security monitoring, hosting management, and technical support so you can focus on business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-wrap">
+    <span class="section-label reveal" style="color:var(--gold)">WHY CHOOSE US</span>
+    <h2 class="section-title reveal">Built on Trust,<br><em>Delivered with Excellence.</em></h2>
+    <div class="why-grid" style="margin-top:48px;">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <div class="why-icon">🏆</div>
+        <div class="why-bar"></div>
+        <div class="why-title">Proven Track Record</div>
+        <div class="why-desc">Successful projects across e-commerce, SACCO systems, interior design, and electronics retail — real results for real businesses.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-num">02</div>
+        <div class="why-icon">⚡</div>
+        <div class="why-bar"></div>
+        <div class="why-title">Fast Delivery</div>
+        <div class="why-desc">We understand Kenyan business timelines. We move quickly without compromising quality, from first call to go-live.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-num">03</div>
+        <div class="why-icon">🤝</div>
+        <div class="why-bar"></div>
+        <div class="why-title">Local Expertise</div>
+        <div class="why-desc">Karen-based, Nairobi-rooted. We understand the Kenyan market, M-Pesa integrations, local hosting, and business culture.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-num">04</div>
+        <div class="why-icon">📱</div>
+        <div class="why-bar"></div>
+        <div class="why-title">Mobile-First Always</div>
+        <div class="why-desc">Over 80% of Kenyan web users are on mobile. Every site we build looks and works great on phones, tablets, and desktops.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO PREVIEW -->
+<section class="portfolio-preview" id="portfolio">
+  <div class="portfolio-preview-wrap">
+    <div class="portfolio-preview-intro">
+      <div class="reveal">
+        <span class="section-label">OUR WORK</span>
+        <h2 class="section-title">Projects We're<br><em>Proud Of.</em></h2>
+      </div>
+      <a href="portfolio.html" class="btn-primary reveal" style="white-space:nowrap">See All Projects →</a>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-thumb supertronics">
+          <span class="project-tag tag-live">✓ LIVE</span>
+          <span class="project-thumb-label">supertronics.stablefortunes.com</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Supertronics Store</div>
+          <p class="project-desc">Electronics e-commerce platform with product catalogue, shopping cart, and M-Pesa payment integration for a Kenyan electronics retailer.</p>
+          <a href="https://supertronics.stablefortunes.com/" target="_blank" class="project-link">Visit Site ↗</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb interior">
+          <span class="project-tag tag-live">✓ LIVE</span>
+          <span class="project-thumb-label">interiordesigners.co.ke</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Interior Designers Kenya</div>
+          <p class="project-desc">Professional portfolio and services website for a leading Kenyan interior design firm, showcasing projects and enabling client enquiries.</p>
+          <a href="https://interiordesigners.co.ke/" target="_blank" class="project-link">Visit Site ↗</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb suimas">
+          <span class="project-tag tag-live">✓ LIVE</span>
+          <span class="project-thumb-label">suimas.co.ke / suimas.com</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Suimas Platform</div>
+          <p class="project-desc">Dual-domain web presence with a responsive corporate site, content management, and SEO-optimised pages built for scale.</p>
+          <a href="https://suimas.co.ke" target="_blank" class="project-link">Visit Site ↗</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb shoes">
+          <span class="project-tag tag-live">✓ LIVE</span>
+          <span class="project-thumb-label">shoeshop.stablefortunes.com</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Shoe Shop Online</div>
+          <p class="project-desc">Fashion e-commerce storefront with a clean product gallery, size selection, cart, and checkout flow for a footwear brand.</p>
+          <a href="https://shoeshop.stablefortunes.com/" target="_blank" class="project-link">Visit Site ↗</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb portfolio">
+          <span class="project-tag tag-live">✓ LIVE</span>
+          <span class="project-thumb-label">bahari23.github.io</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Developer Portfolio</div>
+          <p class="project-desc">Personal portfolio website showcasing skills, past projects, and contact details — built with modern HTML, CSS & JavaScript.</p>
+          <a href="https://bahari23.github.io/" target="_blank" class="project-link">Visit Site ↗</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb sacco">
+          <span class="project-tag tag-ongoing">● IN PROGRESS</span>
+          <span class="project-thumb-label">Stable Fortune SACCO App</span>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Stable Fortune SACCO App</div>
+          <p class="project-desc">A full-featured SACCO management web application — member registration, loans, savings tracking, and admin dashboard. Currently in active development.</p>
+          <a href="https://bahari23.github.io/Stabble-Fortune-Sacco-App/" target="_blank" class="project-link">Preview ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <span class="section-label reveal">HOW WE WORK</span>
+    <h2 class="section-title reveal">Simple Process,<br><em>Exceptional Results.</em></h2>
+    <div class="steps" style="margin-top:0;">
+      <div class="step reveal">
+        <div class="step-dot">01</div>
+        <div class="step-title">Discovery</div>
+        <div class="step-desc">We start with a free consultation to understand your business, goals, and what you need from your website.</div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-dot">02</div>
+        <div class="step-title">Design</div>
+        <div class="step-desc">We create wireframes and design mockups tailored to your brand, seeking your feedback every step of the way.</div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-dot">03</div>
+        <div class="step-title">Build</div>
+        <div class="step-desc">Our developers bring the design to life with clean, fast, mobile-friendly code and all the features you need.</div>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-dot">04</div>
+        <div class="step-title">Launch & Support</div>
+        <div class="step-desc">We deploy your site, hand over access, and remain on call for ongoing support and future improvements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<section class="contact-strip">
+  <div class="contact-strip-inner">
+    <div class="reveal">
+      <span class="section-label" style="color:var(--gold)">READY TO START?</span>
+      <h2 class="contact-strip-title">Let's build something<br><em>great together.</em></h2>
+    </div>
+    <div class="contact-strip-actions reveal reveal-delay-2">
+      <a href="contact.html" class="btn-primary">Get a Free Quote →</a>
+      <a href="tel:+254798544547" class="btn-outline">📞 0798 544 547</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="images/logo.svg" alt="Prime Web Solutions" class="footer-logo-img">
+      <p>Professional web design & development based in Karen, Nairobi. We build digital solutions that help Kenyan and African businesses grow online.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254798544547" title="WhatsApp">💬</a>
+        <a href="mailto:primewebsolutions@gmail.com" title="Email">✉️</a>
+        <a href="https://bahari23.github.io/" title="Portfolio" target="_blank">🌐</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>SERVICES</h4>
+      <a href="#services">Business Websites</a>
+      <a href="#services">E-Commerce Stores</a>
+      <a href="#services">Web Applications</a>
+      <a href="#services">UI/UX Design</a>
+      <a href="#services">SEO & Performance</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <a href="about.html">About Us</a>
+      <a href="portfolio.html">Our Portfolio</a>
+      <a href="#process">How We Work</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <a href="tel:+254798544547">📞 0798 544 547</a>
+      <a href="mailto:primewebsolutions@gmail.com">✉️ primewebsolutions<br>@gmail.com</a>
+      <a href="#">📍 Karen End, Nairobi</a>
+      <a href="https://bahari23.github.io/" target="_blank">🔗 Our Portfolio</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Prime Web Solutions. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/254798544547?text=Hi%2C%20I%20found%20you%20on%20your%20website%20and%20I%20would%20like%20to%20enquire%20about%20your%20services." class="whatsapp-fab" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

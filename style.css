@@ -47,9 +47,22 @@ nav {
 }
 nav.scrolled { height: 60px; background: rgba(2,27,53,1); }
 
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo img { height: 38px; width: auto; filter: brightness(0) invert(1); transition: filter var(--transition); }
-nav.scrolled .nav-logo img { height: 32px; }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo-mark {
+  width: 40px; height: 40px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo-mark span {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  color: var(--navy);
+}
+.nav-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-brand-text strong { font-size: 15px; }
+.nav-brand-text em { font-size: 11px; font-style: normal; letter-spacing: 0.08em; color: rgba(255,255,255,0.65); }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a {
